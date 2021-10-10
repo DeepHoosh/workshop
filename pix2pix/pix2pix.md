@@ -148,19 +148,8 @@ grid_image = torchvision.utils.make_grid(target, nrow=16)
 ax2.imshow(grid_image.permute(1, 2, 0))
 ```
 
-
-
-
-    <matplotlib.image.AxesImage at 0x7f85fb003310>
-
-
-
-
-    
 ![png](images/1.png)
     
-
-
 
 ```python
 # Validation dataset and dataloader
@@ -176,20 +165,9 @@ ax1.imshow(grid_image.permute(1, 2, 0))
 grid_image = torchvision.utils.make_grid(target, nrow=16)
 ax2.imshow(grid_image.permute(1, 2, 0))
 ```
-
-
-
-
-    <matplotlib.image.AxesImage at 0x7f85fabf7910>
-
-
-
-
     
 ![png](images/2.png)
     
-
-
 
 ```python
 test_filenames = sorted(glob.glob(f'{DATASET_TEST_PATH}/*.jpg'))
@@ -201,19 +179,9 @@ image, target = data
 grid_image = torchvision.utils.make_grid(image, nrow=10)
 plt.imshow(grid_image.permute(1, 2, 0))
 ```
-
-
-
-
-    <matplotlib.image.AxesImage at 0x7f85fae52cd0>
-
-
-
-
     
 ![png](images/3.png)
     
-
 
 # Models
 
@@ -776,15 +744,6 @@ grid_image = torchvision.utils.make_grid(torch.cat([image, reconstruction]), nro
 plt.figure(figsize=(24, 24))
 plt.imshow(grid_image.permute(1, 2, 0))
 ```
-
-
-
-
-    <matplotlib.image.AxesImage at 0x7f85ac4dec10>
-
-
-
-
     
 ![png](images/4.png)
     
