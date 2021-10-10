@@ -1,0 +1,6 @@
+torch==1.9.1
+torchvision==0.10.1
+pytorch-lightning==1.4.7
+torchmetrics==0.5.0
+torchsummary==1.5.1
+segmentation-models-pytorch==0.2.0
