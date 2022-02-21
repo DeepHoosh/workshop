@@ -17,16 +17,14 @@
 - ###### Convolutional Vision Transformer
 - ###### DeiT (Training Data Efficient Image Transforemrs)
 
-###  <p dir='rtl' align='right'>نصب کتاب خانه های مورد نیاز برای اجرا</p> 
-                
-----
+#  <p dir='rtl' align='right'>نصب کتاب خانه های مورد نیاز برای اجرا</p> 
+
 ```bash
 pip install tensorflow
 ```
 
-###  <p dir='rtl' align='right'>استفاده از Vision Transformer</p> 
+#  <p dir='rtl' align='right'>استفاده از Vision Transformer</p> 
                 
-----
 ```python
 import tensorflow as tf
 
