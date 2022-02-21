@@ -109,4 +109,5 @@ cvtModel.fit(
 trainingData, #داده تعلیم به شکل دیتاست تنسرفلو
 validation_data=valData, #داده تست به شکل دیتاست تنسرفلو
 epochs=100,)
+
 ```
