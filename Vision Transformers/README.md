@@ -10,7 +10,6 @@
 </div>
 
 # <p dir='rtl' align='right'>فهرست مدل ها</p> 
-<div style="height: 10px"></div>
 
 - ###### Vision Transformer (An Image is worth 16 x 16 words)
 - ###### Pyramid Vision Transformer
@@ -18,11 +17,46 @@
 - ###### Convolutional Vision Transformer
 - ###### DeiT (Training Data Efficient Image Transforemrs)
 
-<div style="height: 10px"></div>
-
-###  <p dir='rtl' align='right'>کتاب خانه های مورد نیاز برای اجرا</p> 
+###  <p dir='rtl' align='right'>نصب کتاب خانه های مورد نیاز برای اجرا</p> 
                 
 ----
 ```bash
 pip install tensorflow
+```
+
+###  <p dir='rtl' align='right'>استفاده از Vision Transformer</p> 
+                
+----
+```python
+import tensorflow as tf
+
+vitClassifier = ViT(
+                    num_classes=1000,
+                    patch_size=16,
+                    num_of_patches=(224//16)**2,
+                    d_model=128,
+                    heads=2,
+                    num_layers=4,
+                    mlp_rate=2,
+                    dropout_rate=0.1
+)
+
+#استفاده از مدل
+sampleInput = tf.random.normal(shape=(1 , 224 , 224 , 3))
+output = vitClassifier(sampleInput , training=False)
+print(output.shape) # (1 , 1000)
+
+#تعلیم مدل
+vitClassifier.compile(loss=tf.keras.losses.CategoricalCrossentropy(),
+              optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+              metrics=[
+                       tf.keras.metrics.CategoricalAccuracy(name="accuracy"),
+                       tf.keras.metrics.TopKCategoricalAccuracy(k=5 , name="top_5_accuracy"),
+              ])
+
+vitClassifier.fit(
+trainingData, #داده تعلیم به شکل دیتاست تنسرفلو
+validation_data=valData, #داده تست به شکل دیتاست تنسرفلو
+epochs=100,
+)
 ```
