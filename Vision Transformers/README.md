@@ -26,6 +26,7 @@ pip install tensorflow
 #  <p dir='rtl' align='right'>استفاده از Vision Transformer</p> 
                 
 ```python
+from vit import ViT
 import tensorflow as tf
 
 vitClassifier = ViT(
@@ -53,6 +54,58 @@ vitClassifier.compile(loss=tf.keras.losses.CategoricalCrossentropy(),
               ])
 
 vitClassifier.fit(
+trainingData, #داده تعلیم به شکل دیتاست تنسرفلو
+validation_data=valData, #داده تست به شکل دیتاست تنسرفلو
+epochs=100,)
+```
+
+#  <p dir='rtl' align='right'>استفاده از Convolutional Vision Transformer</p> 
+                
+```python
+from cvt import CvT , CvTStage
+import tensorflow as tf
+
+cvtModel = CvT(1000 , [
+                      CvTStage(projectionDim=64, 
+                               heads=1, 
+                               embeddingWindowSize=(7 , 7), 
+                               embeddingStrides=(4 , 4), 
+                               layers=1,
+                               projectionWindowSize=(3 , 3), 
+                               projectionStrides=(2 , 2), 
+                               ffnRate=4),
+                      CvTStage(projectionDim=192,
+                               heads=3,
+                               embeddingWindowSize=(3 , 3), 
+                               embeddingStrides=(2 , 2),
+                               layers=1, 
+                               projectionWindowSize=(3 , 3), 
+                               projectionStrides=(2 , 2), 
+                               ffnRate=4),
+                      CvTStage(projectionDim=384,
+                               heads=6,
+                               embeddingWindowSize=(3 , 3),
+                               embeddingStrides=(2 , 2),
+                               layers=1,
+                               projectionWindowSize=(3 , 3),
+                               projectionStrides=(2 , 2), 
+                               ffnRate=4)
+])
+
+#استفاده از مدل
+sampleInput = tf.random.normal(shape=(1 , 224 , 224 , 3))
+output = cvtModel(sampleInput , training=False)
+print(output.shape) # (1 , 1000)
+
+#تعلیم مدل
+cvtModel.compile(loss=tf.keras.losses.CategoricalCrossentropy(),
+              optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+              metrics=[
+                       tf.keras.metrics.CategoricalAccuracy(name="accuracy"),
+                       tf.keras.metrics.TopKCategoricalAccuracy(k=5 , name="top_5_accuracy"),
+              ])
+
+cvtModel.fit(
 trainingData, #داده تعلیم به شکل دیتاست تنسرفلو
 validation_data=valData, #داده تست به شکل دیتاست تنسرفلو
 epochs=100,)
