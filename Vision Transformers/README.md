@@ -20,7 +20,7 @@
 
 <div style="height: 10px"></div>
 
-###  <p dir='rtl' align='right'>کتال خانه های مورد نیاز برای اجرا</p> 
+###  <p dir='rtl' align='right'>کتاب خانه های مورد نیاز برای اجرا</p> 
                 
 ----
 ```bash
